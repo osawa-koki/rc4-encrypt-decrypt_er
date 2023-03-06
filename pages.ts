@@ -10,12 +10,12 @@ const pages = [
     name: 'About',
   },
   {
-    emoji: '💓',
+    emoji: '🔏',
     path: '/encrypt/',
     name: 'Encrypt',
   },
   {
-    emoji: '💓',
+    emoji: '🔓',
     path: '/decrypt/',
     name: 'Decrypt',
   },
