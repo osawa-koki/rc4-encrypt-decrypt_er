@@ -4,7 +4,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const setting = {
   isProd,
   basePath: Env.basePath,
-  title: '🐸 Next.js Template 🐸',
+  title: '🦨 RC4 暗号化・復号サイト 🦨',
 };
 
 export default setting;
