@@ -30,10 +30,15 @@ export default function EncryptPage() {
   };
 
   const Copy = async () => {
-    setCopied(true);
-    navigator.clipboard.writeText(sharedData.encrypted);
-    await new Promise((resolve) => setTimeout(resolve, setting.waitingTime));
-    setCopied(false);
+    try {
+      setCopied(true);
+      navigator.clipboard.writeText(sharedData.encrypted);
+      await new Promise((resolve) => setTimeout(resolve, setting.waitingTime));
+      setCopied(false);
+    } catch (e) {
+      setCopied(false);
+      setError('コピーに失敗しました。');
+    }
   };
 
   return (
