@@ -1,7 +1,7 @@
-import { encrypt, decrypt } from "../src/RC4";
+import { encrypt, decrypt } from '../src/RC4';
 
-describe("RC4 encryption and decryption", () => {
-  it("encrypts and decrypts data correctly", () => {
+describe('RC4 encryption and decryption', () => {
+  it('encrypts and decrypts data correctly', () => {
     const data = Math.random().toString(36).substr(2, 10);
     const key = Math.random().toString(36).substr(2, 10);
 
@@ -11,7 +11,7 @@ describe("RC4 encryption and decryption", () => {
     expect(decryptedData).toBe(data);
   });
 
-  it("produces different results with different keys", () => {
+  it('produces different results with different keys', () => {
     const data = Math.random().toString(36).substr(2, 10);
     const key1 = Math.random().toString(36).substr(2, 10);
     const key2 = Math.random().toString(36).substr(2, 10);
