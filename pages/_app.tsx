@@ -9,7 +9,6 @@ import '../styles/menu.scss';
 
 import '../styles/index.scss';
 import '../styles/about.scss';
-import '../styles/contact.scss';
 
 import Head from 'next/head';
 
@@ -20,8 +19,10 @@ import SharedData from '../src/SharedData';
 export default function MyApp({ Component, pageProps }: AppProps) {
 
   const [sharedData, setSharedData] = useState<SharedData>({
-    username: '',
-    email: 'osawa-koki@example.com',
+    key: 'my-key',
+    content: 'HelloWorld!',
+    encrypted: '',
+    decrypted: '',
   });
 
   return (
