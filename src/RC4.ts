@@ -1,4 +1,3 @@
-
 function KSA(key: number[]): number[] {
   const S = new Array(256);
   for (let i = 0; i < 256; i++) {
