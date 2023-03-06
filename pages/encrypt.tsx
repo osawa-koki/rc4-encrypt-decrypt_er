@@ -12,11 +12,18 @@ export default function EncryptPage() {
   const { sharedData, setSharedData } = React.useContext(DataContext);
   const [encrypted, setEncrypted] = React.useState<boolean>(false);
   const [copied, setCopied] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   const Encrypt = () => {
+    const encrypted = encrypt(sharedData.content, sharedData.key);
+    if (encrypted === null) {
+      setError('暗号化に失敗しました。');
+      return;
+    }
+    setError(null);
     setSharedData({
       ...sharedData,
-      encrypted: encrypt(sharedData.content, sharedData.key),
+      encrypted,
     });
     setEncrypted(true);
   };
@@ -53,6 +60,13 @@ export default function EncryptPage() {
           </Form.Group>
         </Form>
         <Button variant="primary" className="mt-3 d-block m-auto" onClick={Encrypt}>Encrypt 🔏</Button>
+        {
+          error !== null && (
+            <Alert variant="danger" className="mt-3">
+              {error}
+            </Alert>
+          )
+        }
         {
           encrypted && (
             <>
