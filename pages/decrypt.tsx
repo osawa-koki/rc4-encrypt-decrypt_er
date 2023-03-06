@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import setting from "../setting";
 
 import { DataContext } from "../src/DataContext";
+import { decrypt } from "../src/RC4";
 
 export default function EncryptPage() {
 
@@ -15,7 +16,7 @@ export default function EncryptPage() {
   const Encrypt = () => {
     setSharedData({
       ...sharedData,
-      decrypted: 'Decrypted!',
+      decrypted: decrypt(sharedData.encrypted, sharedData.key),
     });
     setDecrypted(true);
   };
