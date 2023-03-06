@@ -17,6 +17,7 @@ export default function EncryptPage() {
   const Encrypt = () => {
     const decrypted = decrypt(sharedData.encrypted, sharedData.key);
     if (decrypted === null) {
+      setDecrypted(false);
       setError('復号に失敗しました。');
       return;
     }

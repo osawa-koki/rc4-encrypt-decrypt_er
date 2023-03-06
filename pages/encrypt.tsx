@@ -17,6 +17,7 @@ export default function EncryptPage() {
   const Encrypt = () => {
     const encrypted = encrypt(sharedData.content, sharedData.key);
     if (encrypted === null) {
+      setEncrypted(false);
       setError('暗号化に失敗しました。');
       return;
     }
