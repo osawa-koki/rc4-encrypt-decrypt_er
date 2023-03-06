@@ -4,7 +4,7 @@
  * @param {number[]} key - 鍵のバイト配列。
  * @returns {number[]} 初期化されたパーミュテーション値の配列。
  */
-function KSA(key) {
+function KSA(key: number[]): number[] {
   const S = new Array(256);
   for (let i = 0; i < 256; i++) {
     S[i] = i;
