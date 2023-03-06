@@ -41,16 +41,20 @@ function PRGA(S: number[]): number[] {
  * @param key - 暗号化に使用するキー。
  * @returns 暗号化されたデータのBASE64エンコードされた文字列。
  */
-export function encrypt(data: string, key: string): string {
-  const _data = new Uint8Array(new TextEncoder().encode(data));
-  const _key = new Uint8Array(new TextEncoder().encode(key));
-  const S = KSA(Array.from(_key));
-  const gen = PRGA(Array.from(S));
-  const result = new Uint8Array(_data.length);
-  for (let i = 0; i < _data.length; i++) {
-    result[i] = _data[i] ^ gen[i];
+export function encrypt(data: string, key: string): string | null {
+  try {
+    const _data = new Uint8Array(new TextEncoder().encode(data));
+    const _key = new Uint8Array(new TextEncoder().encode(key));
+    const S = KSA(Array.from(_key));
+    const gen = PRGA(Array.from(S));
+    const result = new Uint8Array(_data.length);
+    for (let i = 0; i < _data.length; i++) {
+      result[i] = _data[i] ^ gen[i];
+    }
+    return btoa(String.fromCharCode.apply(null, result));
+  } catch (e) {
+    return null;
   }
-  return btoa(String.fromCharCode.apply(null, result));
 }
 
 /**
@@ -59,18 +63,22 @@ export function encrypt(data: string, key: string): string {
  * @param key - 復号化に使用するキー。
  * @returns 復号化されたデータ。
  */
-export function decrypt(data: string, key: string): string {
-  const _data = new Uint8Array(
-    atob(unescape(encodeURIComponent(data)))
-      .split('')
-      .map((char) => char.charCodeAt(0))
-  );
-  const _key = new Uint8Array(new TextEncoder().encode(key));
-  const S = KSA(Array.from(_key));
-  const gen = PRGA(Array.from(S));
-  const result = new Uint8Array(_data.length);
-  for (let i = 0; i < _data.length; i++) {
-    result[i] = _data[i] ^ gen[i];
+export function decrypt(data: string, key: string): string | null {
+  try {
+    const _data = new Uint8Array(
+      atob(data)
+        .split('')
+        .map((char) => char.charCodeAt(0))
+    );
+    const _key = new Uint8Array(new TextEncoder().encode(key));
+    const S = KSA(Array.from(_key));
+    const gen = PRGA(Array.from(S));
+    const result = new Uint8Array(_data.length);
+    for (let i = 0; i < _data.length; i++) {
+      result[i] = _data[i] ^ gen[i];
+    }
+    return new TextDecoder().decode(result);
+  } catch (e) {
+    return null;
   }
-  return new TextDecoder().decode(result);
 }
