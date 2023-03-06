@@ -1,0 +1,9 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": [
+      ".github/workflows/deploy.yml",
+      ".github/workflows/package-manager.yml",
+      ".github/workflows/test-lint-prettify.yml"
+    ]
+  }
+}
