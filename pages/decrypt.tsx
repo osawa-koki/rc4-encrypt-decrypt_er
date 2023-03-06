@@ -44,7 +44,7 @@ export default function EncryptPage() {
   return (
     <Layout>
       <div id="Encrypt">
-        <h1>Encrypt 🔓</h1>
+        <h1>Decrypt 🔓</h1>
         <Form>
           <Form.Group className="mt-3">
             <Form.Label>Enter Key</Form.Label>
